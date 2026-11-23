@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="콘텐츠 마케팅, 서비스 기획, 운영 개선 프로젝트를 소개하는 익명 포트폴리오입니다.">
+  <title>Portfolio | Content · Product · Operations</title>
+  <style>
+    :root {
+      --bg: #0b1220; --surface: #111e31; --surface2: #16243a;
+      --line: rgba(178,199,224,.15); --text: #f3f7ff; --muted: #b4c3d6;
+      --dim: #8094ac; --blue: #56cbff; --mint: #85e3c4; --gold: #ffc58e;
+      --shadow: 0 16px 54px rgba(0,0,0,.16);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased; word-break: keep-all; overflow-wrap: break-word; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    ::selection { background: rgba(86,203,255,.35); }
+    .wrap { width: min(1120px, calc(100% - 52px)); margin: 0 auto; }
+    .site-header { position: sticky; z-index: 20; top: 0; background: rgba(11,18,32,.94);
+      border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .logo { display: inline-flex; align-items: center; gap: 11px; font-weight: 900;
+      letter-spacing: -.035em; font-size: 17px; white-space: nowrap; }
+    .logo-mark { width: 31px; height: 31px; background: var(--blue); border-radius: 9px;
+      display: grid; place-items: center; color: #06243e; font-size: 17px; font-weight: 900; }
+    .nav-links { display: flex; gap: 30px; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .nav-links a:hover,.nav-links a:focus-visible { color: var(--blue); }
+    .hero { padding: 110px 0 100px; position: relative; overflow: hidden; }
+    .hero:before { content: ""; position: absolute; z-index:-1; top:-160px; right:-220px;
+      width: 660px; height: 660px; border-radius: 50%; background: radial-gradient(circle,rgba(45,145,215,.19), transparent 65%); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(295px,.8fr);
+      align-items: center; gap: 62px; }
+    .eyebrow { color: var(--blue); font-size: 12px; font-weight: 850; letter-spacing: .17em;
+      text-transform: uppercase; margin-bottom: 24px; }
+    h1,h2,h3,h4,p { margin: 0; }
+    h1 { font-size: clamp(38px,5vw,65px); line-height: 1.23; letter-spacing: -.065em; font-weight: 850; }
+    h1 em { color: var(--blue); font-style: normal; }
+    .hero-copy { margin: 27px 0 27px; max-width: 620px; font-size: 17px; line-height: 1.9; color: var(--muted); }
+    .tags { display:flex; gap: 9px; flex-wrap:wrap; }
+    .tag { border:1px solid var(--line); color: #d3e3f6; background: rgba(255,255,255,.025);
+      border-radius: 999px; padding: 8px 13px; font-size: 12px; font-weight: 650; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap:wrap; margin-top: 36px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap: 10px; min-height:46px;
+      padding:12px 19px; border-radius:11px; font-size:13px; font-weight:800; }
+    .btn-primary { color:#062033; background: var(--blue); }
+    .btn-primary:hover { background:#90dcff; }
+    .btn-ghost { border:1px solid var(--line); color:var(--text); }
+    .btn-ghost:hover { border-color:var(--blue); }
+    .hero-art { position:relative; background: linear-gradient(145deg,#152b48,#111c2e 70%);
+      border: 1px solid rgba(132,179,219,.26); box-shadow: var(--shadow); padding:29px;
+      border-radius:24px; min-height:393px; overflow:hidden; }
+    .hero-art::before { content:"";position:absolute;right:-65px;top:-65px;width:240px;height:240px;
+      border:1px solid rgba(86,203,255,.18);border-radius:50%; box-shadow:0 0 0 36px rgba(86,203,255,.025),0 0 0 75px rgba(86,203,255,.016); }
+    .art-top { position:relative; display:flex;align-items:center;justify-content:space-between;gap:10px; }
+    .art-label { font-size:11px;letter-spacing:.12em;font-weight:800;color:var(--muted); }
+    .live-dot {display:inline-flex; align-items:center;gap:7px;font-size:10px;color:var(--mint);font-weight:750;}
+    .live-dot:before {content:"";width:7px;height:7px;border-radius:50%;background:var(--mint);}
+    .hero-number { font-size: clamp(55px,6vw,78px);font-weight:900;line-height:1;letter-spacing:-.065em; margin:58px 0 10px; }
+    .hero-number span { color:var(--blue); }
+    .hero-art p {color:var(--muted);font-size:13px;line-height:1.7;}
+    .bars { display:flex;height:78px;gap:7px;align-items:flex-end;margin:23px 0 21px; }
+    .bars i { display:block;flex:1;border-radius:5px 5px 1px 1px;min-width:0;
+      background:linear-gradient(0deg,#247fa9,#56cbff);opacity:.88; }
+    .bars i:nth-child(1) {height:15%}.bars i:nth-child(2) {height:25%}.bars i:nth-child(3) {height:31%}
+    .bars i:nth-child(4) {height:28%}.bars i:nth-child(5) {height:50%}.bars i:nth-child(6) {height:37%}
+    .bars i:nth-child(7) {height:58%}.bars i:nth-child(8) {height:46%}.bars i:nth-child(9) {height:70%}
+    .bars i:nth-child(10) {height:63%}.bars i:nth-child(11) {height:91%}.bars i:nth-child(12) {height:100%}
+    .art-foot { border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;
+      gap:12px;color:var(--dim);font-size:11px;font-weight:700; }
+    .art-foot strong {color:var(--mint);font-size:12px;}
+    section.content-section {padding: 90px 0;}
+    .section-contrast { background: #0e1929; border-top:1px solid rgba(255,255,255,.035); border-bottom:1px solid rgba(255,255,255,.035); }
+    .section-kicker { color:var(--blue);font-size:12px;font-weight:850;letter-spacing:.15em;margin-bottom:13px; }
+    .section-head {display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:32px;}
+    h2 {font-size:clamp(26px,3.3vw,40px);line-height:1.35;letter-spacing:-.048em;}
+    .section-sub {font-size:14px;color:var(--muted);line-height:1.8;max-width:480px;}
+    .impact-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;}
+    .impact {padding:25px 22px; border:1px solid var(--line);background:var(--surface);border-radius:16px;}
+    .impact b { display:block;color:var(--blue);font-size:clamp(26px,3vw,38px);line-height:1.2;letter-spacing:-.055em; }
+    .impact p {color:var(--muted);font-size:13px;line-height:1.6;margin-top:12px;}
+    .impact small {display:block;color:var(--dim);font-size:11px;line-height:1.6;margin-top:9px;}
+    .filters {display:flex;gap:8px;flex-wrap:wrap;margin:0 0 28px;}
+    .filter {cursor:pointer;color:var(--muted);background:transparent;border:1px solid var(--line);
+      border-radius:999px;padding:10px 15px;font-size:12px;font-weight:750;transition:background .15s,border-color .15s;}
+    .filter:hover,.filter:focus-visible {border-color:var(--blue);color:var(--text);}
+    .filter[aria-pressed="true"] {background:var(--blue);color:#052033;border-color:var(--blue);}
+    .projects {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+    .project {display:flex;flex-direction:column;min-width:0;background:var(--surface);
+      border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .2s,border-color .2s;}
+    .project:hover {transform:translateY(-3px);border-color:rgba(86,203,255,.45);}
+    .project[hidden] {display:none;}
+    .project-visual {height:166px;position:relative;display:flex;align-items:center;justify-content:center;
+      overflow:hidden;border-bottom:1px solid var(--line);}
+    .visual-social {background:radial-gradient(circle at 35% 70%,#174771 0%,transparent 55%),linear-gradient(110deg,#173451,#202842);}
+    .visual-stat {background:linear-gradient(110deg,#12354f,#193d48);}
+    .visual-stadium {background:linear-gradient(130deg,#13253f,#174957);}
+    .visual-press {background:linear-gradient(120deg,#1a293f,#26334c);}
+    .visual-drive {background:linear-gradient(120deg,#213c42,#143243);}
+    .visual-ops {background:linear-gradient(120deg,#242c43,#24425a);}
+    .visual-inner {width:70%;max-width:300px;position:relative;z-index:1;}
+    .visual-topline {display:flex;align-items:center;justify-content:space-between;
+      color:#cce3f4;opacity:.78;font-size:10px;font-weight:850;letter-spacing:.12em;margin-bottom:12px;}
+    .visual-topline span:last-child {color:var(--mint);}
+    .visual-main {font-size:32px;font-weight:900;letter-spacing:-.05em;line-height:1.18;}
+    .visual-sub {font-size:12px;color:#c7d9e8;line-height:1.6;margin-top:8px;}
+    .project-visual:after {content:"";position:absolute;right: -75px;bottom:-145px;
+      width:290px;height:290px;border:1px solid rgba(191,233,255,.11);border-radius:50%;box-shadow:0 0 0 30px rgba(190,224,255,.025),0 0 0 75px rgba(190,224,255,.018);}
+    .project-body {padding:26px 27px 27px;display:flex;flex:1;flex-direction:column;}
+    .project-meta {display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-bottom:13px;}
+    .category {font-size:11px;color:var(--blue);font-weight:850;letter-spacing:.055em;}
+    .status {font-size:10px;color:var(--dim);border:1px solid var(--line);padding:4px 8px;border-radius:999px;}
+    h3 {font-size:21px;letter-spacing:-.035em;line-height:1.4;margin-bottom:13px;}
+    .desc {color:var(--muted);font-size:13px;line-height:1.85;margin-bottom:20px;}
+    .detail {margin-top:auto;border-top:1px solid var(--line);padding-top:17px;display:grid;gap:11px;}
+    .detail-row {display:grid;grid-template-columns:54px 1fr;gap:10px;font-size:12px;line-height:1.7;}
+    .detail-row dt {color:var(--dim);font-weight:850;}
+    .detail-row dd {margin:0;color:#d9e5f2;}
+    .outcome {display:inline-flex;align-self:flex-start;gap:8px;flex-wrap:wrap;margin-top:19px;
+      background:rgba(86,203,255,.08);color:#abe5ff;padding:9px 11px;border-radius:8px;font-size:11px;font-weight:800;line-height:1.6;}
+    .outcome:before {content:"↗";font-weight:900;}
+    .method-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;}
+    .method {background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 21px;}
+    .method .num {color:var(--blue);font-size:12px;letter-spacing:.1em;font-weight:900;margin-bottom:23px;}
+    .method h3 {font-size:18px;margin-bottom:9px;}
+    .method p {font-size:12px;line-height:1.75;color:var(--muted);}
+    .closing {display:flex;justify-content:space-between;align-items:center;gap:24px;padding:38px 0 60px;
+      border-top:1px solid var(--line);}
+    .closing h2 {font-size:22px;margin-bottom:8px;}
+    .closing p {font-size:13px;color:var(--muted);line-height:1.7;}
+    .closing-mark {white-space:nowrap;color:var(--blue);letter-spacing:.1em;font-size:12px;font-weight:850;}
+    .site-footer {border-top:1px solid var(--line);padding:22px 0 35px;color:var(--dim);font-size:11px;}
+    .footer-flex {display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;}
+    :focus-visible {outline: 2px solid var(--blue);outline-offset:4px;}
+    @media (max-width: 900px) {
+      .hero-grid {gap:32px;grid-template-columns:1fr;}
+      .hero {padding:74px 0 70px;}
+      .hero-art {min-height:340px;max-width:610px;}
+      .hero-number {margin-top:37px;}
+      .impact-grid,.method-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+      .section-head {display:block;}
+      .section-sub {margin-top:12px;}
+    }
+    @media (max-width: 610px) {
+      .wrap {width:min(100% - 32px,1120px);}
+      .nav {min-height:64px;}
+      .nav-links {gap:13px;font-size:11px;}
+      .nav-links a:nth-child(2) {display:none;}
+      .logo {font-size:14px;}
+      .logo-mark {width:28px;height:28px;}
+      .hero {padding:56px 0 58px;}
+      h1 {font-size:clamp(34px,9vw,45px);}
+      .hero-copy {font-size:14px;line-height:1.85;}
+      .hero-art {padding:22px;min-height:320px;}
+      .hero-number {font-size:60px;}
+      section.content-section {padding:68px 0;}
+      .impact-grid {gap:10px;}
+      .impact {padding:18px 15px;}
+      .impact b {font-size:29px;}
+      .impact p {font-size:12px;}
+      .projects {grid-template-columns:1fr;}
+      .project-body {padding:23px 21px;}
+      .method-grid {grid-template-columns:1fr 1fr;gap:10px;}
+      .method {padding:19px 16px;}
+      .method h3 {font-size:16px;}
+      .closing {align-items:flex-start;flex-direction:column;}
+      .filters {gap:7px;}
+      .filter {padding:9px 11px;font-size:11px;}
+    }
+    @media (prefers-reduced-motion: reduce) {html {scroll-behavior:auto;} .project{transition:none;}}
+    @media print {
+      :root {--bg:#fff;--surface:#fff;--text:#152238;--muted:#3a4b60;--dim:#5b6f82;--line:#cbd5e1;--blue:#0072a3;}
+      body {background:#fff;} .site-header,.hero-actions,.filters {display:none;}
+      .hero {padding:25px 0 35px;} section.content-section{padding:25px 0;}
+      .hero-art,.project-visual {print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+      .hero-grid{grid-template-columns:1fr 1fr;} .impact-grid{grid-template-columns:repeat(4,1fr);}
+      .projects{grid-template-columns:repeat(2,1fr);} .project,.impact,.method{break-inside:avoid;}
+      .project{box-shadow:none;} .project-body{padding:17px;}
+      .method-grid{grid-template-columns:repeat(4,1fr);} .closing{padding:20px 0;}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="메인 메뉴">
+      <a href="#top" class="logo" aria-label="포트폴리오 처음으로"><span class="logo-mark">P</span> PORTFOLIO<span style="color:var(--blue)">.</span></a>
+      <div class="nav-links">
+        <a href="#impact">성과</a><a href="#projects">프로젝트</a><a href="#approach">일하는 방식</a>
+      </div>
+    </nav>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">CONTENT · PRODUCT · OPERATIONS</div>
+          <h1>관심을 끌고,<br>반응을 읽고,<br><em>다음 경험을 설계합니다.</em></h1>
+          <p class="hero-copy">콘텐츠를 직접 만들고 반응을 데이터로 분석하며, 떠오른 아이디어를 실제 웹 화면과 서비스 구조로 발전시켜 왔습니다. 사람의 행동을 관찰하는 것에서 시작해 실행과 개선까지 연결하는 기획자입니다.</p>
+          <div class="tags" aria-label="핵심 분야">
+            <span class="tag">콘텐츠·마케팅</span><span class="tag">팬 경험·커뮤니티</span><span class="tag">서비스 기획</span><span class="tag">협업·운영</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">프로젝트 보기 <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-ghost" href="#impact">주요 성과 살펴보기 <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="콘텐츠 최고 조회수 227만 회를 표현한 그래픽">
+          <div class="art-top"><span class="art-label">FEATURED CONTENT RESULT</span><span class="live-dot">SELECTED WORK</span></div>
+          <div class="hero-number">227<span>만+</span></div>
+          <p>직접 운영한 팬 콘텐츠의 릴스 최고 조회수<br>관심을 실제 반응으로 연결한 콘텐츠 경험</p>
+          <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="art-foot"><span>CONTENT / ORGANIC PERFORMANCE</span><strong>79,000 LIKES</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-contrast" id="impact">
+      <div class="wrap">
+        <div class="section-kicker">01 / IMPACT</div>
+        <div class="section-head">
+          <h2>숫자로 남긴 실행의 결과</h2>
+          <p class="section-sub">한 번의 제작보다 중요한 것은 무엇이 사람을 움직였는지 파악하고, 다음 행동으로 연결하는 것입니다.</p>
+        </div>
+        <div class="impact-grid">
+          <div class="impact"><b>227만</b><p>릴스 최고 조회수</p><small>직접 운영한 팬 콘텐츠</small></div>
+          <div class="impact"><b>7.9만</b><p>단일 콘텐츠 좋아요</p><small>반응이 검증된 콘텐츠 사례</small></div>
+          <div class="impact"><b>6회</b><p>신문 발행 총괄</p><small>기획·제작·검수·협업 운영</small></div>
+          <div class="impact"><b>약 8배</b><p>기사 조회 성과 사례</p><small>독자 관심사 기반 기사 기획</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="projects">
+      <div class="wrap">
+        <div class="section-kicker">02 / SELECTED PROJECTS</div>
+        <div class="section-head">
+          <h2>문제를 발견하고, 직접 움직였습니다</h2>
+          <p class="section-sub">콘텐츠 실험부터 서비스 프로토타입, 여러 이해관계자가 참여하는 운영 과제까지.</p>
+        </div>
+        <div class="filters" role="group" aria-label="프로젝트 유형 필터">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">전체</button>
+          <button class="filter" type="button" data-filter="content" aria-pressed="false">콘텐츠·마케팅</button>
+          <button class="filter" type="button" data-filter="product" aria-pressed="false">서비스 기획</button>
+          <button class="filter" type="button" data-filter="operation" aria-pressed="false">운영·협업</button>
+        </div>
+        <div class="projects">
+          <article class="project" data-category="content">
+            <div class="project-visual visual-social"><div class="visual-inner"><div class="visual-topline"><span>CASE 01 / SOCIAL CONTENT</span><span>CONTENT</span></div><div class="visual-main">2.27M VIEWS</div><div class="visual-sub">야구 팬의 맥락에서 시작한 콘텐츠 실험</div></div></div>
+            <div class="project-body">
+              <div class="project-meta"><span class="category">콘텐츠·마케팅</span><span class="status">직접 운영</span></div>
+              <h3>팬의 관심을 발견하고, 반응을 수치로 읽다</h3>
+              <p class="desc">야구 팬 대상 SNS 콘텐츠를 직접 기획·운영하며 후킹 메시지와 소재를 실험했습니다. 조회수뿐 아니라 저장, 댓글, 프로필 방문, 링크 이동 같은 행동 지표도 함께 확인했습니다.</p>
+              <dl class="detail"><div class="detail-row"><dt>역할</dt><dd>콘텐츠 기획 · 제작 · 성과 분석</dd></div><div class="detail-row"><dt>접근</dt><dd>팬 관심사 발굴 → 소재·구성 실험 → 지표별 개선점 도출</dd></div></dl>
+              <span class="outcome">최고 227만 조회 · 좋아요 7.9만 · 댓글 578개 · 저장 3,600회</span>
+            </div>
+          </article>
+
+          <article class="project" data-category="content operation">
+            <div class="project-visual visual-press"><div class="visual-inner"><div class="visual-topline"><span>CASE 02 / EDITORIAL</span><span>OPERATION</span></div><div class="visual-main">6 EDITIONS</div><div class="visual-sub">독자 분석에서 제작 프로세스까지</div></div></div>
+            <div class="project-body">
+              <div class="project-meta"><span class="category">콘텐츠·운영</span><span class="status">편집국장 경험</span></div>
+              <h3>독자 데이터와 협업 구조를 모두 바꾸다</h3>
+              <p class="desc">학내 신문사 기자와 편집국장으로 활동하며 독자 커뮤니티의 관심 키워드를 기사 기획에 활용했습니다. 사진 검토 일정을 앞당기고 공동 문서로 피드백을 관리해 제작 과정의 병목을 줄였습니다.</p>
+              <dl class="detail"><div class="detail-row"><dt>역할</dt><dd>기사 기획 · 편집 의사결정 · 발행 총괄</dd></div><div class="detail-row"><dt>접근</dt><dd>독자 관심 분석 · 초안 피드백 · 제작 일정 재설계</dd></div></dl>
+              <span class="outcome">총 6회 발행 총괄 · 약 8배 조회 성과 기사 사례</span>
+            </div>
+          </article>
+
+          <article class="project" data-category="product">
+            <div class="project-visual visual-stadium"><div class="visual-inner"><div class="visual-topline"><span>CASE 03 / FAN EXPERIENCE</span><span>WEB</span></div><div class="visual-main">FAN SPACE</div><div class="visual-sub">경기장 밖에서도 함께 응원하는 경험</div></div></div>
+            <div class="project-body">
+              <div class="project-meta"><span class="category">서비스 기획</span><span class="status">웹 프로토타입</span></div>
+              <h3>온라인 야구장: 관람을 참여로 확장하다</h3>
+              <p class="desc">같은 경기를 보는 팬들이 하나의 공간에 모일 수 있도록 온라인 응원석을 구상하고 웹으로 구현했습니다. 홈·원정 좌석 구분, 좌석 선택, 화면 위에 나타나는 채팅 경험을 설계했습니다.</p>
+              <dl class="detail"><div class="detail-row"><dt>역할</dt><dd>아이디어 발굴 · 사용자 흐름 · UI 개선</dd></div><div class="detail-row"><dt>접근</dt><dd>참여 장벽 최소화 · 좌석 구분 · 욕설 필터 설계</dd></div></dl>
+              <span class="outcome">참여형 웹 프로토타입 제작 및 반복 수정</span>
+            </div>
+          </article>
+
+          <article class="project" data-category="product">
+            <div class="project-visual visual-stat"><div class="visual-inner"><div class="visual-topline"><span>CASE 04 / SPORTS DATA</span><span>UX</span></div><div class="visual-main">LCK STAT</div><div class="visual-sub">찾아보는 기록에서 탐색하는 경험으로</div></div></div>
+            <div class="project-body">
+              <div class="project-meta"><span class="category">서비스 기획</span><span class="status">서비스 프로토타입</span></div>
+              <h3>e스포츠 팬을 위한 경기 정보 탐색 화면</h3>
+              <p class="desc">일정·경기 결과·팀 및 선수 통계를 흩어져 찾는 경험을 개선하고자 정보 탐색 서비스를 기획했습니다. 최신 경기 우선 배치, 상대전적 비교, 시즌 전환 등 팬의 탐색 흐름을 중심으로 구성했습니다.</p>
+              <dl class="detail"><div class="detail-row"><dt>역할</dt><dd>정보구조 · UX 기획 · 오류 점검</dd></div><div class="detail-row"><dt>단계</dt><dd>UI 프로토타입 구현 · 공식 데이터 자동 연동 미완료</dd></div></dl>
+              <span class="outcome">경기·팀·선수 정보를 한 화면 흐름으로 재구성</span>
+            </div>
+          </article>
+
+          <article class="project" data-category="product">
+            <div class="project-visual visual-drive"><div class="visual-inner"><div class="visual-topline"><span>CASE 05 / MOBILITY IDEA</span><span>CONCEPT</span></div><div class="visual-main">GOOD DRIVE</div><div class="visual-sub">실수 경험을 다음 주행의 개선으로</div></div></div>
+            <div class="project-body">
+              <div class="project-meta"><span class="category">서비스 기획</span><span class="status">공모전 기획안</span></div>
+              <h3>길실수 노트: 불편했던 순간을 학습 기회로</h3>
+              <p class="desc">운전 중 겪는 길 선택 실수를 일회성 스트레스로 끝내지 않고 다음 주행에 도움이 되는 정보로 바꾸는 차량용 서비스 아이디어를 구상했습니다. 이용 상황과 문제 해결 흐름을 중심으로 기획을 구체화했습니다.</p>
+              <dl class="detail"><div class="detail-row"><dt>역할</dt><dd>문제 정의 · 서비스 콘셉트 · 이용 시나리오</dd></div><div class="detail-row"><dt>단계</dt><dd>기획안 및 프로토타입 준비 단계</dd></div></dl>
+              <span class="outcome">차량 이용 맥락에 기반한 신규 앱 콘셉트 도출</span>
+            </div>
+          </article>
+
+          <article class="project" data-category="operation">
+            <div class="project-visual visual-ops"><div class="visual-inner"><div class="visual-topline"><span>CASE 06 / STAKEHOLDERS</span><span>LEADERSHIP</span></div><div class="visual-main">COORDINATION</div><div class="visual-sub">예기치 못한 상황에서도 실행을 완수하는 운영</div></div></div>
+            <div class="project-body">
+              <div class="project-meta"><span class="category">운영·협업</span><span class="status">위원장 경험</span></div>
+              <h3>다양한 이해관계자를 조율해 촬영을 완수하다</h3>
+              <p class="desc">졸업앨범 제작 과정에서 계약 조건을 검토하고 업체 미팅과 촬영 동선을 조정했습니다. 교내 집회로 변수가 생긴 현장에서는 관련 주체들과 협의하며 촬영을 진행했습니다.</p>
+              <dl class="detail"><div class="detail-row"><dt>역할</dt><dd>계약 검토 · 협의 · 일정 및 현장 운영</dd></div><div class="detail-row"><dt>접근</dt><dd>학교·관련 단체·학생 간 이해관계 조율</dd></div></dl>
+              <span class="outcome">돌발 변수 속 졸업앨범 촬영 일정 이행</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-contrast" id="approach">
+      <div class="wrap">
+        <div class="section-kicker">03 / HOW I WORK</div>
+        <div class="section-head"><h2>아이디어보다, 실행의 순서를 믿습니다</h2><p class="section-sub">콘텐츠와 서비스를 가리지 않고 반복해 온 문제 해결 방식입니다.</p></div>
+        <div class="method-grid">
+          <div class="method"><div class="num">STEP 01</div><h3>관찰</h3><p>사람들이 어디에서 머무르고 이탈하는지, 무엇을 불편해하는지 살핍니다.</p></div>
+          <div class="method"><div class="num">STEP 02</div><h3>가설</h3><p>숫자와 이용 상황을 연결해 개선할 수 있는 핵심 문제를 정의합니다.</p></div>
+          <div class="method"><div class="num">STEP 03</div><h3>구현</h3><p>기획안에서 멈추지 않고 콘텐츠, 화면, 운영 방식으로 만들어 봅니다.</p></div>
+          <div class="method"><div class="num">STEP 04</div><h3>검증</h3><p>조회·행동 지표, 오류, 피드백을 확인해 다음 실행에 반영합니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap closing">
+      <div><h2>좋은 기획은 경험을 바꿉니다.</h2><p>콘텐츠로 관심을 만들고, 서비스로 참여를 설계하며, 운영으로 결과를 완성합니다.</p></div>
+      <div class="closing-mark">IDEA → ACTION → IMPACT</div>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-flex"><span>© 2026 · SELECTED WORK PORTFOLIO</span><span>CONTENT / PRODUCT / OPERATIONS</span></div></footer>
+  <script>
+    (function () {
+      'use strict';
+      var buttons = document.querySelectorAll('.filter');
+      var projects = document.querySelectorAll('.project');
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          var selected = button.getAttribute('data-filter');
+          buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
+          projects.forEach(function (project) {
+            var categories = (project.getAttribute('data-category') || '').split(' ');
+            project.hidden = selected !== 'all' && categories.indexOf(selected) === -1;
+          });
+        });
+      });
+    }());
+  </script>
+</body>
+</html>
